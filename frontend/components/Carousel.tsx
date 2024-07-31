@@ -52,11 +52,10 @@ const Carousel = ({ images }: { images: string[] }) => {
   };
 
   return (
-    <div className="carousel relative flex justify-center items-center w-[200px] md:w-[300px] mx-auto my-48 md:my-72">
+    <div className="carousel relative flex justify-center items-center w-[200px] md:w-[300px] mx-auto">
       <AnimatePresence initial={false} custom={direction}>
         <Link
           title="לחץ לפתיחת תמונה גדולה"
-          className="absolute"
           href={images[imageIndex]}
           target="_blank">
           <motion.img

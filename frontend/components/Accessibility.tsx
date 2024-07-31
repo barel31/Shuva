@@ -10,7 +10,7 @@ export default function Accessibility() {
           __html: `
 nl_pos = "bl";
 nl_dir = "assets/nl-files/";
-nl_contact = "n:Doron Hadad|p:050-4741117|u:h.d.law9+d:gmail.com‬|f:1533-5506545";
+nl_contact = "n:${process.env.NEXT_PUBLIC_CONTACT_NAME}|p:${process.env.NEXT_PUBLIC_CONTACT_PHONE}|u:${process.env.NEXT_PUBLIC_CONTACT_EMAIL}|f:${process.env.NEXT_PUBLIC_CONTACT_FAX}";
 `,
         }}
       />

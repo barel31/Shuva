@@ -32,9 +32,6 @@ export default async function RootLayout({
 }) {
   const [contactInfo, routes] = await Promise.all([getContactInfo, getRoutes]);
 
-  console.log({routes});
-  
-  
   if (routes[0].name !== 'בית') {
     const homeIndex = routes.findIndex(route => route.name === 'בית');
     [routes[0], routes[homeIndex]] = [routes[homeIndex], routes[0]]; // Swap the first route with the home route
