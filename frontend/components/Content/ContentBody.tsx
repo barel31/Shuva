@@ -18,7 +18,9 @@ const ContentBody = ({
         <ContactForm contact={contact!} />
       </div>
     ) : (
-      slug === 'contact-me' && <ContactMePage contact={contact!} />
+      (slug === 'contact-me' || slug === 'contact') && (
+        <ContactMePage contact={contact!} />
+      )
     )}
 
     <div
