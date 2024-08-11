@@ -1,24 +1,21 @@
 import { PortableText, PortableTextComponents } from '@portabletext/react';
 import Link from 'next/link';
-import Image from 'next/image';
-import { urlFor } from '@/client';
+import YouTubeBlock from '../Block/YouTubeBlock';
+import ImageBlock from '../Block/ImageBlock';
 
 const components: PortableTextComponents = {
   marks: {
-    em: ({ children }) => (
-      <em className="text-gray-600 font-semibold">{children}</em>
-    ),
+    em: ({ children }) => <em className="font-semibold">{children}</em>,
     link: ({ value, children }) => {
-      const target = (value?.href || '').startsWith('http')
-        ? '_blank'
-        : undefined;
+      const target = value?.href?.startsWith('http') ? '_blank' : undefined;
 
       return (
         <Link
           href={value?.href || ''}
           target={target}
           rel={target === '_blank' ? 'noindex nofollow' : ''}
-          title={children as string}>
+          className="underline hover:no-underline transition-all"
+          title={typeof children === 'string' ? children : undefined}>
           {children}
         </Link>
       );
@@ -26,53 +23,62 @@ const components: PortableTextComponents = {
   },
   block: {
     normal: ({ children }: any) => {
-      if (children.length === 1 && children[0] === '') {
-        return <br />;
-      }
-      return <p>{children}</p>;
+      return children?.length === 1 && children?.at(0) === '' ? (
+        <br />
+      ) : (
+        <p className="text-lg leading-relaxed my-1">{children}</p>
+      );
     },
-    h1: ({ children }) => <h1 className="text-4xl md:text-7xl">{children}</h1>,
-    h2: ({ children }) => <h2 className="text-3xl md:text-6xl">{children}</h2>,
-    h3: ({ children }) => <h3 className="text-2xl md:text-5xl">{children}</h3>,
-    h4: ({ children }) => <h4 className="text-xl md:text-4xl">{children}</h4>,
-    h5: ({ children }) => <h5 className="text-base md:text-3xl">{children}</h5>,
+    h1: ({ children }) => (
+      <h1 className="text-4xl md:text-7xl font-bold tracking-tight mt-8 mb-4">
+        {children}
+      </h1>
+    ),
+    h2: ({ children }) => (
+      <h2 className="text-3xl md:text-6xl font-semibold tracking-tight mt-6 mb-4">
+        {children}
+      </h2>
+    ),
+    h3: ({ children }) => (
+      <h3 className="text-2xl md:text-5xl font-medium tracking-tight mt-6 mb-4">
+        {children}
+      </h3>
+    ),
+    h4: ({ children }) => (
+      <h4 className="text-xl md:text-4xl font-medium tracking-tight mt-4 mb-3">
+        {children}
+      </h4>
+    ),
+    h5: ({ children }) => (
+      <h5 className="text-base md:text-3xl font-medium tracking-tight mt-3 mb-2">
+        {children}
+      </h5>
+    ),
     blockquote: ({ children }) => (
-      <blockquote className="border-l-yellow-500">{children}</blockquote>
+      <blockquote className="border-x-4 px-4 italic mb-4">
+        {children}
+      </blockquote>
     ),
   },
   list: {
-    bullet: ({ children }) => <ul className="md:mt-xl">{children}</ul>,
-    number: ({ children }) => <ol className="md:mt-lg">{children}</ol>,
+    bullet: ({ children }) => (
+      <ul className="list-disc list-inside ml-4 mb-4">{children}</ul>
+    ),
+    number: ({ children }) => (
+      <ol className="list-decimal list-inside ml-4 mb-4">{children}</ol>
+    ),
     checkmarks: ({ children }) => (
-      <ol className="m-auto text-lg">{children}</ol>
+      <ol className="list-none ml-4 mb-4">{children}</ol>
     ),
   },
   types: {
-    image: ({ value }) => {
-      const url = urlFor(value.asset).dpr(2).url();
-
-      return (
-        <a
-          href={url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-[300px] h-[500px] m-1 inline-block align-middle">
-          <Image
-            src={url}
-            alt={process.env.NEXT_PUBLIC_SITE_DESCRIPTION!}
-            priority
-            width={300}
-            height={500}
-            className="w-fit h-fit object-left text-transparent"
-          />
-        </a>
-      );
-    },
+    image: ImageBlock,
+    youtube: YouTubeBlock,
   },
 };
 
-function UseRichText({ value }: { value: Topography[] }) {
+const UseRichText = ({ value }: { value: Topography[] }) => {
   return <PortableText value={value} components={components} />;
-}
+};
 
 export default UseRichText;
