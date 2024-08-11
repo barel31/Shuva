@@ -9,14 +9,13 @@ export default ({ value }: PortableTextTypeComponentProps<any>) => {
     <a
       href={url}
       target="_blank"
-      rel="noopener noreferrer"
-      className="w-[300px] h-[500px] m-1 inline-block align-middle">
+      rel="noopener noreferrer">
       <Image
         src={url}
         alt={process.env.NEXT_PUBLIC_SITE_DESCRIPTION!}
         priority
         width={300}
-        height={500}
+        height={300}
         className="w-fit h-fit object-left text-transparent"
       />
     </a>

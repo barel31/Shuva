@@ -9,7 +9,7 @@ export default ({ value }: PortableTextTypeComponentProps<any>) => {
   const embedUrl = `https://www.youtube.com/embed/${videoId}`;
 
   return (
-    <div className="youtube-block">
+    <div className="youtube-block m-4">
       <iframe
         className="max-md:w-full"
         width="560"

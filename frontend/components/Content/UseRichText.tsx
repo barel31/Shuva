@@ -1,84 +1,101 @@
-import { PortableText, PortableTextComponents } from '@portabletext/react';
-import Link from 'next/link';
+import { PortableText } from '@portabletext/react';
 import YouTubeBlock from '../Block/YouTubeBlock';
 import ImageBlock from '../Block/ImageBlock';
-
-const components: PortableTextComponents = {
-  marks: {
-    em: ({ children }) => <em className="font-semibold">{children}</em>,
-    link: ({ value, children }) => {
-      const target = value?.href?.startsWith('http') ? '_blank' : undefined;
-
-      return (
-        <Link
-          href={value?.href || ''}
-          target={target}
-          rel={target === '_blank' ? 'noindex nofollow' : ''}
-          className="underline hover:no-underline transition-all"
-          title={typeof children === 'string' ? children : undefined}>
-          {children}
-        </Link>
-      );
-    },
-  },
-  block: {
-    normal: ({ children }: any) => {
-      return children?.length === 1 && children?.at(0) === '' ? (
-        <br />
-      ) : (
-        <p className="text-lg leading-relaxed my-1">{children}</p>
-      );
-    },
-    h1: ({ children }) => (
-      <h1 className="text-4xl md:text-7xl font-bold tracking-tight mt-8 mb-4">
-        {children}
-      </h1>
-    ),
-    h2: ({ children }) => (
-      <h2 className="text-3xl md:text-6xl font-semibold tracking-tight mt-6 mb-4">
-        {children}
-      </h2>
-    ),
-    h3: ({ children }) => (
-      <h3 className="text-2xl md:text-5xl font-medium tracking-tight mt-6 mb-4">
-        {children}
-      </h3>
-    ),
-    h4: ({ children }) => (
-      <h4 className="text-xl md:text-4xl font-medium tracking-tight mt-4 mb-3">
-        {children}
-      </h4>
-    ),
-    h5: ({ children }) => (
-      <h5 className="text-base md:text-3xl font-medium tracking-tight mt-3 mb-2">
-        {children}
-      </h5>
-    ),
-    blockquote: ({ children }) => (
-      <blockquote className="border-x-4 px-4 italic mb-4">
-        {children}
-      </blockquote>
-    ),
-  },
-  list: {
-    bullet: ({ children }) => (
-      <ul className="list-disc list-inside ml-4 mb-4">{children}</ul>
-    ),
-    number: ({ children }) => (
-      <ol className="list-decimal list-inside ml-4 mb-4">{children}</ol>
-    ),
-    checkmarks: ({ children }) => (
-      <ol className="list-none ml-4 mb-4">{children}</ol>
-    ),
-  },
-  types: {
-    image: ImageBlock,
-    youtube: YouTubeBlock,
-  },
-};
+import components from './RichTextComponents';
 
 const UseRichText = ({ value }: { value: Topography[] }) => {
-  return <PortableText value={value} components={components} />;
+  // Group blocks into media and content based on type and order
+  const groupElements = (blocks: Topography[]) => {
+    const groupedElements: Array<{
+      type: 'media' | 'content';
+      blocks?: Topography[];
+      block?: Topography;
+    }> = [];
+
+    let currentMediaGroup: Topography[] = [];
+
+    blocks.forEach((block) => {
+      const isMediaBlock = block._type === 'youtube' || block._type === 'image';
+
+      if (isMediaBlock) {
+        // Check if the current group is empty or the same type, otherwise push the group
+        if (
+          currentMediaGroup.length > 0 &&
+          currentMediaGroup[0]._type !== block._type
+        ) {
+          groupedElements.push({ type: 'media', blocks: currentMediaGroup });
+          currentMediaGroup = []; // Start a new group
+        }
+        currentMediaGroup.push(block);
+      } else {
+        // Push the current media group if it exists
+        if (currentMediaGroup.length > 0) {
+          groupedElements.push({ type: 'media', blocks: currentMediaGroup });
+          currentMediaGroup = []; // Reset the media group
+        }
+        // Push non-media blocks directly
+        groupedElements.push({ type: 'content', block });
+      }
+    });
+
+    // Add any remaining media blocks to the grouped elements
+    if (currentMediaGroup.length > 0) {
+      groupedElements.push({ type: 'media', blocks: currentMediaGroup });
+    }
+
+    return groupedElements;
+  };
+
+  // Render media blocks (either images or videos) in a flex container
+  const renderMediaGroup = (blocks: Topography[], index: number) => (
+    <div key={index} className="flex flex-wrap justify-center gap-4 my-4">
+      {blocks.map((block, blockIndex) => {
+        if (block._type === 'youtube') {
+          return (
+            <YouTubeBlock
+              key={blockIndex}
+              value={block}
+              index={blockIndex}
+              isInline={false}
+              renderNode={() => null}
+            />
+          );
+        } else if (block._type === 'image') {
+          return (
+            <ImageBlock
+              key={blockIndex}
+              value={block}
+              index={blockIndex}
+              isInline={false}
+              renderNode={() => null}
+            />
+          );
+        }
+        return null;
+      })}
+    </div>
+  );
+
+  // Render non-media content blocks
+  const renderContentBlock = (block: Topography, index: number) => (
+    <PortableText key={index} value={[block]} components={components} />
+  );
+
+  // Group the blocks and render them in order
+  const groupedElements = groupElements(value);
+
+  return (
+    <>
+      {groupedElements.map((group, index) => {
+        if (group.type === 'media' && group.blocks) {
+          return renderMediaGroup(group.blocks, index);
+        } else if (group.type === 'content' && group.block) {
+          return renderContentBlock(group.block, index);
+        }
+        return null;
+      })}
+    </>
+  );
 };
 
 export default UseRichText;
