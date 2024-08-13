@@ -25,7 +25,7 @@ const ContentBody = ({
 
     <div
       className={cn(
-        'content-body-text text-right mx-6 py-6 xl:m-36 min-h-[60vh] text-slate-900 dark:text-slate-300 normal-line-height',
+        'content-body-text text-right mx-6 py-6 xl:mx-36 min-h-[60vh] text-slate-900 dark:text-slate-300 normal-line-height',
         {
           'mt-12': route.slug.current === '/',
           'xl:pt-16': route.slug.current === '/',
