@@ -32,11 +32,11 @@ const isRouteActive = (params: Params, route: Route, child: boolean) => {
  */
 const generateClassNames = (isActive: boolean, isChild: boolean) => {
   return cn(
-    'flex justify-around align-middle text-slate-500 dark:text-slate-100 text-sm font-bold transition-colors px-1 p-2 xl:p-4 max-md:m-2 rounded-md w-max text-center',
+    'flex justify-around align-middle text-neutral-500 dark:text-neutral-100 text-sm font-bold transition-colors px-1 p-2 xl:p-4 max-md:m-2 rounded-md w-max text-center',
     {
       'text-center self-center m-auto': isChild,
-      'bg-slate-400 dark:bg-slate-500 shadow-md scale-105': isActive,
-      'hover:scale-105 hover:bg-slate-400 dark:hover:bg-slate-500': !isActive,
+      'bg-neutral-400 dark:bg-neutral-500 shadow-md scale-105': isActive,
+      'hover:scale-105 hover:bg-neutral-400 dark:hover:bg-neutral-500': !isActive,
     }
   );
 };

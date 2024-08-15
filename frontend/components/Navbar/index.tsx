@@ -74,7 +74,7 @@ function Navbar({ routes, contact }: NavbarProps) {
   }, [adjustStyles, clickListener]);
 
   return (
-    <header className="fixed z-10 top-0 w-full min-h-[2.5rem] bg-slate-200/90 dark:bg-slate-600/90">
+    <header className="fixed z-10 top-0 w-full min-h-[2.5rem] bg-neutral-200/90 dark:bg-neutral-600/90">
       <ScrollLine />
       <nav
         ref={ref}
@@ -92,7 +92,7 @@ function Navbar({ routes, contact }: NavbarProps) {
             width={logoWidth}
             height={logoHeight}
             className={cn(
-              'self-start bg-slate-50/70 rounded-sm transition-all h-auto',
+              'self-start bg-neutral-50/70 rounded-sm transition-all h-auto',
               { width: logoWidth, height: logoHeight }
             )}
           />

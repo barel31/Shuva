@@ -43,7 +43,7 @@ export default async function RootLayout({
         <GoogleAnalytics />
         <link rel="canonical" href={process.env.NEXT_PUBLIC_PRODUCTION_URL} />
       </head>
-      <body className={cn('bg-slate-50 dark:bg-slate-800', rubik.className)}>
+      <body className={cn('dark bg-neutral-50 dark:bg-neutral-800', rubik.className)}>
         <ThemeProvider>
           <Navbar routes={routes} contact={contactInfo} />
 

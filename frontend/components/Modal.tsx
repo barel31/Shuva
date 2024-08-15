@@ -28,7 +28,7 @@ function Modal({ children }: { children: React.ReactNode }) {
   return (
     <dialog
       id="dialogModal"
-      className="absolute top-0 mt-32 m-auto p-2 md:p-10 w-[75vw] md:w-[50vw] dark:bg-slate-500 rounded-md text-center transition-all shadow-md border-2">
+      className="absolute top-0 mt-32 m-auto p-2 md:p-10 w-[75vw] md:w-[50vw] dark:bg-neutral-500 rounded-md text-center transition-all shadow-md border-2">
       <div ref={ref}>
         {children}
         <button

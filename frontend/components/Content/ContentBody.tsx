@@ -21,7 +21,7 @@ const ContentBody = ({
   const isContactPage = slug === 'contact-me' || slug === 'contact';
 
   return (
-    <div className="content-body m-auto bg-slate-50 dark:bg-slate-700">
+    <div className="content-body m-auto bg-neutral-50 dark:bg-neutral-700">
       {isHomePage ? (
         <div className="w-full">
           <ContactForm contact={contact!} />
@@ -32,7 +32,7 @@ const ContentBody = ({
 
       <div
         className={cn(
-          'content-body-text text-right mx-4 py-6 xl:mx-36 min-h-[60vh] text-slate-900 dark:text-slate-300 normal-line-height',
+          'content-body-text text-right mx-4 py-6 xl:mx-36 min-h-[60vh] text-neutral-900 dark:text-neutral-300 normal-line-height',
           {
             'mt-12': route.slug.current === '/',
             'xl:pt-16': route.slug.current === '/',

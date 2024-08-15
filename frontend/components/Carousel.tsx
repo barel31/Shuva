@@ -88,12 +88,12 @@ const Carousel = ({ images }: { images: string[] }) => {
       <div
         className="carousel-next absolute rounded-full flex justify-center items-center select-none cursor-pointer font-bold text-lg z-10 right-[-55px] hover:scale-105 transition-transform duration-300 ease-in-out"
         onClick={() => paginate(1)}>
-        <IconRightArrow className="w-10 h-10 fill-slate-900 dark:fill-slate-300 dark:bg-slate-800 rounded-full hover:fill-slate-700 dark:hover:fill-slate-500" />
+        <IconRightArrow className="w-10 h-10 fill-neutral-900 dark:fill-neutral-300 dark:bg-neutral-800 rounded-full hover:fill-neutral-700 dark:hover:fill-neutral-500" />
       </div>
       <div
         className="carousel-prev absolute rounded-full flex justify-center items-center select-none cursor-pointer font-bold text-lg z-10 left-[-55px] hover:scale-105 transition-transform duration-300 ease-in-out"
         onClick={() => paginate(-1)}>
-        <IconLeftArrow className="w-10 h-10 fill-slate-900 dark:fill-slate-300 dark:bg-slate-800 rounded-full hover:fill-slate-700 dark:hover:fill-slate-500" />
+        <IconLeftArrow className="w-10 h-10 fill-neutral-900 dark:fill-neutral-300 dark:bg-neutral-800 rounded-full hover:fill-neutral-700 dark:hover:fill-neutral-500" />
       </div>
     </div>
   );

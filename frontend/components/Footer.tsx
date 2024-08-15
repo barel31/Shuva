@@ -24,7 +24,7 @@ interface ContactInfo {
 
 const ContactInfoSection = ({ contact }: { contact: ContactInfo }) => (
   <div className="m-10 mb-0">
-    <h4 className="underline underline-offset-8 m-4 decoration-lime-500 justify-start">
+    <h4 className="underline underline-offset-8 m-4 decoration-neutural-500 justify-start">
       יצירת קשר
     </h4>
     <ul className="flex flex-col max-md:items-start">
@@ -92,7 +92,7 @@ const ContactInfoSection = ({ contact }: { contact: ContactInfo }) => (
 
 const SiteNavigationSection = ({ routes }: { routes: Route[] }) => (
   <div className="m-10 flex flex-col items-start footer:items-center">
-    <h4 className="underline underline-offset-8 m-4 decoration-lime-500 justify-start text-center">
+    <h4 className="underline underline-offset-8 m-4 decoration-neutural-500 justify-start text-center">
       ניווט באתר
     </h4>
     {routes.map((route: Route) => (
@@ -109,7 +109,7 @@ const SiteNavigationSection = ({ routes }: { routes: Route[] }) => (
 
 const MapSection = ({ address }: { address: string }) => (
   <div className="min-[400px]:m-10 flex flex-col items-start md:items-center">
-    <h4 className="underline underline-offset-8 m-4 decoration-lime-500 justify-start">
+    <h4 className="underline underline-offset-8 m-4 decoration-neutural-500 justify-start">
       מפה
     </h4>
     <div className="h-full w-full">
@@ -126,25 +126,17 @@ function Footer({
   contact: ContactInfo;
 }) {
   return (
-    <footer className="bg-stone-300 dark:bg-stone-800 w-full min-h-44 bottom-0 text-gray-800 dark:text-gray-300">
+    <footer className="bg-stone-300 dark:bg-stone-800 w-full min-h-44 bottom-0 text-neutral-800 dark:text-neutral-300">
       <div className="flex flex-col footer:flex-row justify-around text-lg">
         <ContactInfoSection contact={contact} />
         <SiteNavigationSection routes={routes} />
         <MapSection address={contact?.address} />
       </div>
 
-      <div className="text-center p-10">
-        <p>&copy; כל הזכויות שמורות {year} All rights reserved &copy;</p>
+      <div className="text-center p-1">
         <p>
-          Designed and developed by{' '}
-          <Link
-            className="hover:font-bold"
-            href="https://www.linkedin.com/in/barel-shraga/"
-            target="_blank"
-            rel="noindex nofollow"
-            title="barel31 Linkedin">
-            barel31
-          </Link>
+          אתר זה נתרם להצלחת בראל נתנאל שרגא
+          <br /> ולכבוד מולא רבי אור שרגא יזדי
         </p>
       </div>
     </footer>

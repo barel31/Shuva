@@ -8,7 +8,7 @@ function Modal() {
 
       <h1 className="text-3xl/10">תודה על פנייתך</h1>
 
-      <h2 className="font-bold text-lime-500 text-lg m-2">
+      <h2 className="font-bold text-neutural-500 text-lg m-2">
         ההודעה נשלחה בהצלחה. אנו נחזור אליך בהקדם.
       </h2>
     </ModalUi>

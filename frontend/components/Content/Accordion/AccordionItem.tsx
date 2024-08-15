@@ -21,15 +21,15 @@ function AccordionItem({ qa }: { qa: QAndA }) {
     <div>
       <button
         className={cn(
-          'dark:text-slate-300 p-5 w-full transition-all duration-[400ms] dark:bg-slate-600 hover:bg-slate-500',
-          { 'bg-slate-400 dark:!bg-slate-500': open, 'bg-slate-300': !open }
+          'dark:text-neutral-300 p-5 w-full transition-all duration-[400ms] dark:bg-neutral-600 hover:bg-neutral-500',
+          { 'bg-neutral-400 dark:!bg-neutral-500': open, 'bg-neutral-300': !open }
         )}
         onClick={handleClick}
         type="button"
         title={qa.question}>
         {qa.question}
       </button>
-      <div className="dark:text-slate-300 bg-slate-300 dark:bg-slate-700 max-h-0 px-5 overflow-hidden transition-all duration-200 ease-out">
+      <div className="dark:text-neutral-300 bg-neutral-300 dark:bg-neutral-700 max-h-0 px-5 overflow-hidden transition-all duration-200 ease-out">
         <p>{qa.answer}</p>
       </div>
     </div>

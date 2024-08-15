@@ -15,7 +15,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
   return (
     <div
-      className={`page-content page-content-${slug} text-slate-950 text-center`}>
+      className={`page-content page-content-${slug} text-neutral-950 text-center`}>
       <Content route={route} contact={contact} />
     </div>
   );
