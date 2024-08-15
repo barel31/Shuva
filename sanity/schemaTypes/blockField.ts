@@ -14,6 +14,8 @@ export default defineField({
         {title: 'כותרת 3', value: 'h3'},
         {title: 'כותרת 4', value: 'h4'},
         {title: 'כותרת 5', value: 'h5'},
+        {title: 'כותרת זהב', value: 'goldH1'},
+        {title: 'רגיל זהב', value: 'goldText'},
         {title: 'ציטוט', value: 'blockquote'},
       ],
     }),
