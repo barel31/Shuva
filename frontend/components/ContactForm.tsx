@@ -37,7 +37,7 @@ function ContactForm({
   return (
     <div
       className={cn(
-        'm-auto flex flex-col placeholder:text-neutral-950text-lg 5ustify-around w-full h-full border-8 border-[#FFD700] rounded-sm gold-effect-border',
+        'm-auto flex flex-col placeholder:text-neutral-950 text-lg justify-around w-full h-full gold-effect-border',
         {
           'bg-neutral-400 dark:bg-neutral-dark:600 lg:flex-row': !message,
         }

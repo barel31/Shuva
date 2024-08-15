@@ -58,12 +58,16 @@ const components: PortableTextComponents = {
       </h5>
     ),
     goldH1: ({ children }) => (
-      <h1 className="text-4xl md:text-7xl font-bold tracking-tight mt-8 mb-4 gold-effect-text">
+      <h1
+        className="text-4xl md:text-7xl font-bold tracking-tight mt-8 mb-4 gold-effect-text"
+        data-heading={children}>
         {children}
       </h1>
     ),
     goldText: ({ children }) => (
-      <p className="text-lg leading-relaxed my-1 gold-effect-text">
+      <p
+        className="text-lg leading-relaxed my-1 gold-effect-text"
+        data-heading={children}>
         {children}
       </p>
     ),

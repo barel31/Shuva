@@ -1,4 +1,5 @@
 import '@/styles/globals.css';
+import '@/styles/gold.css';
 
 import { type Metadata } from 'next';
 import { getContactInfo, getRoutes } from '@/client';
