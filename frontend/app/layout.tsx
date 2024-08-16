@@ -39,12 +39,17 @@ export default async function RootLayout({
   }
 
   return (
-    <html lang="he" dir="rtl" suppressHydrationWarning>
+    <html
+      lang="he"
+      dir="rtl"
+      suppressHydrationWarning
+      style={{ colorScheme: 'dark' }}>
       <head>
         <GoogleAnalytics />
         <link rel="canonical" href={process.env.NEXT_PUBLIC_PRODUCTION_URL} />
       </head>
-      <body className={cn('dark bg-neutral-50 dark:bg-neutral-800', rubik.className)}>
+      <body
+        className={cn('bg-neutral-50 dark:bg-neutral-800', rubik.className)}>
         <ThemeProvider>
           <Navbar routes={routes} contact={contactInfo} />
 
