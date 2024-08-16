@@ -17,11 +17,9 @@ export const metadata: Metadata = {
   title: process.env.NEXT_PUBLIC_SITE_NAME!,
   description: process.env.NEXT_PUBLIC_SITE_DESCRIPTION!,
   keywords: process.env.NEXT_PUBLIC_SITE_KEYWORDS!,
-
-  // NEED TO IMPLEMENT GOOGLE INDEX FOR THE WEBSITE
-  // other: {
-  //   'google-site-verification': 'oLou05k7JXCvfbsQl-8YhBq73nsGZwf6lViRe6E4lwI',
-  // },
+  other: {
+    'google-site-verification': 'oLou05k7JXCvfbsQl-8YhBq73nsGZwf6lViRe6E4lwI',
+  },
 };
 
 export default async function RootLayout({
