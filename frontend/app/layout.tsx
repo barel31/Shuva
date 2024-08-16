@@ -6,10 +6,13 @@ import { getContactInfo, getRoutes } from '@/client';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ThemeProvider from '@/components/ThemeProvider';
-import GoogleAnalytics from '@/components/GoogleAnalytics';
 import Accessibility from '@/components/Accessibility';
 import { Rubik } from 'next/font/google';
 import { cn } from '@/lib/utils';
+import {
+  GoogleTagManager,
+  GoogleTagManagerNoscript,
+} from '@/components/GoogleAnalytics';
 
 const rubik = Rubik({ subsets: ['latin'] });
 
@@ -43,12 +46,13 @@ export default async function RootLayout({
       suppressHydrationWarning
       style={{ colorScheme: 'dark' }}>
       <head>
-        <GoogleAnalytics />
+        <GoogleTagManager />
         <link rel="canonical" href={process.env.NEXT_PUBLIC_PRODUCTION_URL} />
       </head>
       <body
         className={cn('bg-neutral-50 dark:bg-neutral-800', rubik.className)}>
         <ThemeProvider>
+          <GoogleTagManagerNoscript />
           <Navbar routes={routes} contact={contactInfo} />
 
           <main>
