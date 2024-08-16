@@ -108,21 +108,22 @@ function Navbar({ routes, contact }: NavbarProps) {
         </button>
         <div
           className={cn(
-            'navbar-links self-center flex flex-col navbar:flex-row max-navbar:self-start justify-around navbar:min-w-[70%] max-navbar:basis-2/5 max-navbar:mt-3 invisible',
+            'navbar-links self-center flex flex-col navbar:flex-row max-navbar:self-start justify-around navbar:min-w-[70%] max-navbar:basis-2/5 max-navbar:mt-3 invisible max-w-[50%]',
             { visible: (isMobile && show) || !isMobile }
           )}>
-          {routes.map(
-            (route: Route) =>
-              !route.isChild && (
-                <RouteLink
-                  route={route}
-                  onNavClick={hideNavBar}
-                  params={params}
-                  key={route._id}
-                  isMobile={isMobile}
-                />
-              )
-          )}
+          {((isMobile && show) || !isMobile) &&
+            routes.map(
+              (route: Route) =>
+                !route.isChild && (
+                  <RouteLink
+                    route={route}
+                    onNavClick={hideNavBar}
+                    params={params}
+                    key={route._id}
+                    isMobile={isMobile}
+                  />
+                )
+            )}
         </div>
         <NavbarContact contact={contact} isMobile={isMobile} show={show} />
       </nav>
