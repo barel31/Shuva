@@ -1,6 +1,5 @@
 import {
   PortableTextComponents,
-  type PortableTextTypeComponentProps,
 } from '@portabletext/react';
 import Link from 'next/link';
 import ImageBlock from '../Block/ImageBlock';
@@ -33,33 +32,33 @@ const components: PortableTextComponents = {
       );
     },
     h1: ({ children }) => (
-      <h1 className="text-4xl md:text-7xl font-bold tracking-tight mt-8 mb-4">
+      <h1 className="inline text-4xl md:text-7xl font-bold tracking-tight mt-8 mb-4">
         {children}
       </h1>
     ),
     h2: ({ children }) => (
-      <h2 className="text-3xl md:text-6xl font-semibold tracking-tight mt-6 mb-4">
+      <h2 className="inline text-3xl md:text-6xl font-semibold tracking-tight mt-6 mb-4">
         {children}
       </h2>
     ),
     h3: ({ children }) => (
-      <h3 className="text-2xl md:text-5xl font-medium tracking-tight mt-6 mb-4">
+      <h3 className="inline text-2xl md:text-5xl font-medium tracking-tight mt-6 mb-4">
         {children}
       </h3>
     ),
     h4: ({ children }) => (
-      <h4 className="text-xl md:text-4xl font-medium tracking-tight mt-4 mb-3">
+      <h4 className="inline text-xl md:text-4xl font-medium tracking-tight mt-4 mb-3">
         {children}
       </h4>
     ),
     h5: ({ children }) => (
-      <h5 className="text-base md:text-3xl font-medium tracking-tight mt-3 mb-2">
+      <h5 className="inline text-base md:text-3xl font-medium tracking-tight mt-3 mb-2">
         {children}
       </h5>
     ),
     goldH1: ({ children }) => (
       <h1
-        className="text-4xl md:text-7xl font-bold tracking-tight mt-8 mb-4 gold-effect-text"
+        className="inline text-4xl md:text-7xl font-bold tracking-tight mt-8 mb-4 gold-effect-text"
         data-heading={children}>
         {children}
       </h1>
