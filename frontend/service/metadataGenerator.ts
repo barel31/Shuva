@@ -18,8 +18,14 @@ export default async function generateMetadata(
     };
   }
 
+  // Exclude the home (/) prefix from the title
+  const title =
+    slug === '/'
+      ? previousTitle
+      : `${process.env.NEXT_PUBLIC_SITE_NAME_NO_DESCRIPTION} | ${route.name}`;
+
   return {
-    title: previousTitle ? `${route.name} | ${previousTitle}` : route.name,
+    title: title || route.name,
     description: `${route.content[0].children[0].text} | ${previousDescription}`,
     keywords: `${route.keywords}, ${previousKeywords}`,
   };
