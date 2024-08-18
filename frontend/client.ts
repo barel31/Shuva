@@ -10,16 +10,16 @@ export const Client = createClient({
 });
 
 export const getRoutes: Promise<Route[]> = sanityFetch({
-  query: `*[_type == "routes"]{ ..., "children": coalesce(children[]->, []) } | order(_createdAt asc)`,
+  query: `*[_type == "routes"]{ ..., "children": coalesce(children[]->, []), "_updatedAt": _updatedAt } | order(_createdAt asc)`,
 });
 
 export const getRoute = (slug: string): Promise<Route> =>
   sanityFetch({
-    query: `*[_type == "routes" && slug.current == "${slug}"]{ ..., "children": children[]-> }[0]`,
+    query: `*[_type == "routes" && slug.current == "${slug}"]{ ..., "children": children[]->, "_updatedAt": _updatedAt }[0]`,
   });
 
 export const getContactInfo: Promise<ContactInfo> = sanityFetch({
-  query: `*[_type == "contactInfo"] | order(_createdAt asc) [0]`,
+  query: `*[_type == "contactInfo"]{ ..., "_updatedAt": _updatedAt } | order(_createdAt asc) [0]`,
 });
 
 const builder = imageUrlBuilder(Client);
