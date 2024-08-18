@@ -8,22 +8,24 @@ function Modal({ children }: { children: React.ReactNode }) {
   const router = useRouter();
 
   useEffect(() => {
-    const el = document.getElementById('dialogModal') as HTMLDialogElement;
-    if (el) {
-      el.showModal();
+    const dialogElement = document.getElementById(
+      'dialogModal'
+    ) as HTMLDialogElement;
+    if (dialogElement) {
+      dialogElement.showModal();
     }
   }, []);
 
   useEffect(() => {
-    const clickListener = (e: MouseEvent) => {
-      if (!ref.current?.contains(e.target as Node)) {
+    const handleOutsideClick = (event: MouseEvent) => {
+      if (ref.current && !ref.current.contains(event.target as Node)) {
         router.back();
       }
     };
 
-    addEventListener('click', clickListener);
-    return () => removeEventListener('click', clickListener);
-  }, [ref, router]);
+    document.addEventListener('click', handleOutsideClick);
+    return () => document.removeEventListener('click', handleOutsideClick);
+  }, [router]);
 
   return (
     <dialog
