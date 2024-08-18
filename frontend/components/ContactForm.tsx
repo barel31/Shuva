@@ -96,7 +96,7 @@ function ContactForm({
           disabled={disableBtn}
           type="submit"
           className={cn(
-            'focus:outline-none text-white bg-neutral-400 hover:bg-neutral-800 disabled:bg-neutral-200 hover:disabled:bg-neutral-200 disabled:cursor-not-allowed focus:ring-4 focus:ring-neutral-300 font-medium rounded-lg text-sm px-8 py-2.5 dark:bg-neutral-500 dark:hover:bg-neutral-600 dark:focus:ring-neutral-800',
+            'focus:outline-none text-white bg-neutral-500 hover:bg-neutral-800 disabled:bg-neutral-200 hover:disabled:bg-neutral-200 disabled:cursor-not-allowed focus:ring-4 focus:ring-neutral-300 font-medium rounded-lg text-sm px-8 py-2.5 dark:bg-neutral-500 dark:hover:bg-neutral-600 dark:focus:ring-neutral-800',
             { 'w-full': message, 'max-md:w-full': !message }
           )}>
           שלח
