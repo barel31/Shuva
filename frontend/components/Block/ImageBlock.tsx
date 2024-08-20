@@ -6,10 +6,7 @@ export default ({ value }: PortableTextTypeComponentProps<any>) => {
   const url = urlFor(value.asset).dpr(2).url();
 
   return (
-    <a
-      href={url}
-      target="_blank"
-      rel="noopener noreferrer">
+    <a href={url} target="_blank" rel="noopener noreferrer">
       <Image
         src={url}
         alt={process.env.NEXT_PUBLIC_SITE_DESCRIPTION!}

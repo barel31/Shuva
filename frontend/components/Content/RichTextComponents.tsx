@@ -1,6 +1,4 @@
-import {
-  PortableTextComponents,
-} from '@portabletext/react';
+import { type PortableTextComponents } from '@portabletext/react';
 import Link from 'next/link';
 import ImageBlock from '../Block/ImageBlock';
 import YouTubeBlock from '../Block/YouTubeBlock';

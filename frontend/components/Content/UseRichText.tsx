@@ -4,21 +4,30 @@ import ImageBlock from '../Block/ImageBlock';
 import components from './RichTextComponents';
 
 const UseRichText = ({ value }: { value: Topography[] }) => {
-  // Group blocks into media and content based on type and order
+  // Group blocks into media and content, handling lists within the same group
   const groupElements = (blocks: Topography[]) => {
     const groupedElements: Array<{
       type: 'media' | 'content';
       blocks?: Topography[];
-      block?: Topography;
+      block?: Topography[];
     }> = [];
 
     let currentMediaGroup: Topography[] = [];
+    let currentContentGroup: Topography[] = [];
+    let currentListGroup: Topography[] = [];
 
-    blocks.forEach((block) => {
+    blocks.forEach(block => {
       const isMediaBlock = block._type === 'youtube' || block._type === 'image';
+      const isListBlock = block._type === 'list';
+      const isListItemBlock = block._type === 'listItem';
 
       if (isMediaBlock) {
-        // Check if the current group is empty or the same type, otherwise push the group
+        // Push the current content group if it exists
+        if (currentContentGroup.length > 0) {
+          groupedElements.push({ type: 'content', block: currentContentGroup });
+          currentContentGroup = []; // Reset the content group
+        }
+        // Push the current media group if it exists and is of a different type
         if (
           currentMediaGroup.length > 0 &&
           currentMediaGroup[0]._type !== block._type
@@ -27,20 +36,46 @@ const UseRichText = ({ value }: { value: Topography[] }) => {
           currentMediaGroup = []; // Start a new group
         }
         currentMediaGroup.push(block);
-      } else {
+      } else if (isListBlock) {
+        // Push the current content group if it exists
+        if (currentContentGroup.length > 0) {
+          groupedElements.push({ type: 'content', block: currentContentGroup });
+          currentContentGroup = []; // Reset the content group
+        }
         // Push the current media group if it exists
         if (currentMediaGroup.length > 0) {
           groupedElements.push({ type: 'media', blocks: currentMediaGroup });
           currentMediaGroup = []; // Reset the media group
         }
-        // Push non-media blocks directly
-        groupedElements.push({ type: 'content', block });
+        // Handle list blocks
+        currentListGroup.push(block);
+      } else if (isListItemBlock) {
+        // Add list items to the current list group
+        currentListGroup.push(block);
+      } else {
+        // Push the current list group if it exists
+        if (currentListGroup.length > 0) {
+          groupedElements.push({ type: 'content', block: currentListGroup });
+          currentListGroup = []; // Reset the list group
+        }
+        // Push the current media group if it exists
+        if (currentMediaGroup.length > 0) {
+          groupedElements.push({ type: 'media', blocks: currentMediaGroup });
+          currentMediaGroup = []; // Reset the media group
+        }
+        currentContentGroup.push(block);
       }
     });
 
-    // Add any remaining media blocks to the grouped elements
+    // Add any remaining media, content, or list blocks to the grouped elements
     if (currentMediaGroup.length > 0) {
       groupedElements.push({ type: 'media', blocks: currentMediaGroup });
+    }
+    if (currentContentGroup.length > 0) {
+      groupedElements.push({ type: 'content', block: currentContentGroup });
+    }
+    if (currentListGroup.length > 0) {
+      groupedElements.push({ type: 'content', block: currentListGroup });
     }
 
     return groupedElements;
@@ -76,9 +111,9 @@ const UseRichText = ({ value }: { value: Topography[] }) => {
     </div>
   );
 
-  // Render non-media content blocks
-  const renderContentBlock = (block: Topography, index: number) => (
-    <PortableText key={index} value={[block]} components={components} />
+  // Render content blocks, including grouped lists
+  const renderContentBlock = (blocks: Topography[], index: number) => (
+    <PortableText key={index} value={blocks} components={components} />
   );
 
   // Group the blocks and render them in order
