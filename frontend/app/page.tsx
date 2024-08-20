@@ -1,4 +1,4 @@
-import { getContactInfo, getRoute } from '@/client';
+import { getContactInfo, getRoute } from '@/lib/client';
 import Content from '@/components/Content';
 import { type Metadata, type ResolvingMetadata } from 'next';
 import metadataGenerator from '@/service/metadataGenerator';

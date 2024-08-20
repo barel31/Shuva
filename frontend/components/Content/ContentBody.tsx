@@ -4,7 +4,7 @@ import ContactMePage from './ContactMePage';
 import ContactForm from '../ContactForm';
 import Carousel from '../Carousel';
 import { cn } from '@/lib/utils';
-import { urlFor } from '@/client';
+import { urlFor } from '@/lib/client';
 
 const ContentBody = ({
   route,

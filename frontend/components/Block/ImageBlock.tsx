@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { urlFor } from '@/client';
+import { urlFor } from '@/lib/client';
 import { type PortableTextTypeComponentProps } from 'next-sanity';
 
 export default ({ value }: PortableTextTypeComponentProps<any>) => {

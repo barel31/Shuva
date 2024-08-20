@@ -1,5 +1,5 @@
 import ModalUi from '@/components/Modal';
-import { getRoutes } from '@/client';
+import { getRoutes } from '@/lib/client';
 import { IconErrorPajamas } from '@/lib/icons';
 import { formatDate } from '@/lib/utils';
 
