@@ -6,8 +6,6 @@ import { formatDate } from '@/lib/utils';
 async function admin() {
   const routes = await getRoutes;
 
-  
-
   const renderRouteList = () => {
     return routes.map(route => {
       const lastUpdated = route._updatedAt

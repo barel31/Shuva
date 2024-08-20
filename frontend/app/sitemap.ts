@@ -8,7 +8,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     url:
       process.env.NEXT_PUBLIC_BASE_URL +
       (route.slug.current === '/' ? '' : '/' + route.slug.current),
-    lastModified: new Date(),
+    lastModified: route._updatedAt,
     changeFrequency: 'daily',
     priority: route.slug.current === '/' ? 1 : 0.7,
     // images: route.image ? [{ url: route.image.url }] : [], //? Currently not supported by Next.js
