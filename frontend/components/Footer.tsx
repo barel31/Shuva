@@ -108,7 +108,7 @@ const SiteNavigationSection = ({ routes }: { routes: Route[] }) => (
 );
 
 const MapSection = ({ address }: { address: string }) => (
-  <div className="min-[400px]:m-10 flex flex-col items-start md:items-center">
+  <div className="flex flex-col items-start md:items-center">
     <h4 className="underline underline-offset-8 m-4 decoration-neutural-500 justify-start">
       מפה
     </h4>
