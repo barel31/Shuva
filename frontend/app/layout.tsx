@@ -7,14 +7,12 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ThemeProvider from '@/components/ThemeProvider';
 import Accessibility from '@/components/Accessibility';
-import { Rubik } from 'next/font/google';
+import { rubik } from '@/lib/fonts';
 import { cn } from '@/lib/utils';
 import {
   GoogleTagManager,
   GoogleTagManagerNoscript,
 } from '@/components/GoogleAnalytics';
-
-const rubik = Rubik({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: process.env.NEXT_PUBLIC_SITE_NAME!,
