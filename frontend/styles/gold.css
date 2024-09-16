@@ -10,6 +10,12 @@
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+
+  /* Text Decoration Fix */
+  text-decoration-color: #ffd700;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 7px;
+
   color: #fff;
   font-family: 'Playfair Display', serif;
   position: relative;
